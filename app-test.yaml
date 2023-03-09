@@ -1,0 +1,2 @@
+service: gateway-testnet
+runtime: nodejs16
