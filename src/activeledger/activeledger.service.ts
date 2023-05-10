@@ -1,12 +1,12 @@
-import { ActiveRequest } from '@activeledger/activeutilities';
+import { ActiveRequest } from "@activeledger/activeutilities";
 import {
   LedgerEvents,
   IBaseTransaction,
   ILedgerResponse,
   TransactionHandler,
   Connection,
-} from '@activeledger/sdk';
-import { Injectable } from '@nestjs/common';
+} from "@activeledger/sdk";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class ActiveledgerService {
@@ -17,7 +17,7 @@ export class ActiveledgerService {
     this.connection = new Connection(
       process.env.ACTIVESCHEME,
       process.env.ACTIVEADDRESS,
-      process.env.ACTIVEPORT,
+      process.env.ACTIVEPORT
     );
   }
 
@@ -35,9 +35,25 @@ export class ActiveledgerService {
     return (
       await ActiveRequest.send(
         `${process.env.ACTIVECORE}/api/getPublic/${id}`,
-        'GET',
+        "GET"
       )
     ).data as any;
+  }
+
+  /**
+   * Get Stream for node API server.
+   *
+   * @param {string} id
+   * @returns {Promise<unknown>}
+   * @memberof Activeledger
+   */
+  public async getStream(id: string): Promise<unknown> {
+    return (
+      await ActiveRequest.send(
+        `${process.env.ACTIVECORE}/api/getStream/${id}`,
+        "GET"
+      )
+    ).data as any;  
   }
 
   /**
@@ -55,10 +71,10 @@ export class ActiveledgerService {
     // Transaction Handler
     const txHandler = new TransactionHandler();
     const parsedTx =
-      typeof tx === 'string'
-        ? JSON.parse(Buffer.from(tx, 'base64').toString())
+      typeof tx === "string"
+        ? JSON.parse(Buffer.from(tx, "base64").toString())
         : tx;
-        console.log(parsedTx);
+    console.log(parsedTx);
     return await txHandler.sendTransaction(parsedTx, this.connection);
     // Implement Generic error handling here
   }

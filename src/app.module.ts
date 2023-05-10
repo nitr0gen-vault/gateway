@@ -5,6 +5,7 @@ import { KeysController } from './controllers/keys/keys.controller';
 import { User } from './entities/user.entity';
 import { Key } from './entities/key.entity';
 import { ActiveledgerService } from './activeledger/activeledger.service';
+import { NftController } from './controllers/nft/nft.controller';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { ActiveledgerService } from './activeledger/activeledger.service';
     TypeOrmModule.forFeature([User, Key]),
     // CommonModule,
   ],
-  controllers: [UserController, KeysController],
+  controllers: [UserController, KeysController, NftController],
   providers: [ActiveledgerService],
 })
 export class AppModule {}
