@@ -13,7 +13,7 @@
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:orig": "nest start",
-    "start": "node ./dist/src/main.js",
+    "start": "node ./dist/main.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -24,6 +24,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "deploy": "gcloud app deploy",
+    "predeploy:mainnet": "npx ts-node deployments/deploy.ts prepare live",
+    "deploy:mainnet": "gcloud --project nitr0gen app deploy ./app.yaml",
+    "postdeploy:mainnet": "npx ts-node deployments/deploy.ts post live",
     "predeploy:testnet": "npx ts-node deployments/deploy.ts prepare test",
     "deploy:testnet": "gcloud --project nitr0gen app deploy ./app-test.yaml",
     "postdeploy:testnet": "npx ts-node deployments/deploy.ts post test"
