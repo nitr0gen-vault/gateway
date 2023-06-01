@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { Key } from './entities/key.entity';
 import { ActiveledgerService } from './activeledger/activeledger.service';
 import { NftController } from './controllers/nft/nft.controller';
+import { Layer2Controller } from './controllers/layer2/layer2.controller';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { NftController } from './controllers/nft/nft.controller';
     TypeOrmModule.forFeature([User, Key]),
     // CommonModule,
   ],
-  controllers: [UserController, KeysController, NftController],
+  controllers: [UserController, KeysController, NftController, Layer2Controller],
   providers: [ActiveledgerService],
 })
 export class AppModule {}
