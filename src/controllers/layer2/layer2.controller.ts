@@ -17,8 +17,7 @@ export class Layer2Controller {
   @ApiSecurity("X-API-KEY", ["X-API-KEY"])
   @UseGuards(AuthGuard)
   @Post("send")
-  async diffconsensus(@Body("ntx") ntx: string): Promise<any> {
-    console.log("Layer 2 Sending");
+  async genericTransaction(@Body("ntx") ntx: string): Promise<any> {
     return await this.activeledger.send(ntx);
   }
 }
