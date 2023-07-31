@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 //import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'typeorm';
+import { json } from 'body-parser';
+
 
 dotenv.config();
 
@@ -25,6 +27,8 @@ async function bootstrap() {
   //   .build();
   // const document = SwaggerModule.createDocument(app, config);
   // SwaggerModule.setup('api', app, document);
+
+  app.use(json({ limit: '32mb' }));
 
   const PORT = Number(process.env.PORT) || 8080;
   await app.listen(PORT);
