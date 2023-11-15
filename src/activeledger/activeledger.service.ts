@@ -50,7 +50,7 @@ export class ActiveledgerService {
   public async getStream(id: string): Promise<unknown> {
     return (
       await ActiveRequest.send(
-        `${process.env.ACTIVECORE}/api/getStream/${id}`,
+        `${process.env.ACTIVECORE}/api/getStream/${id.replace(":volatile","")}`,
         "GET"
       )
     ).data as any;  
