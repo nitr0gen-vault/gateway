@@ -1,5 +1,6 @@
 dist
 node_modules
 app.yaml
+*.yaml
 .env
 deployments/*.env
